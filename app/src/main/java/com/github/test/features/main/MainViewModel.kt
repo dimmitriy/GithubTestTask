@@ -16,7 +16,7 @@ class MainViewModel @Inject constructor(private val searchRepo: SearchRepository
     private val _searchUsers = MutableLiveData<List<SearchUserEntity>>()
     private val disposable = CompositeDisposable()
 
-    fun searchUsers(query: String): LiveData<List<SearchUserEntity>> {
+    fun searchUsers(query: String) {
         showProgress.value = true
         searchRepo.searchUsers(query)
             .subscribe({
@@ -27,7 +27,8 @@ class MainViewModel @Inject constructor(private val searchRepo: SearchRepository
                 showProgress.value = false
             })
             .let(disposable::add)
-        return _searchUsers
     }
+
+    fun getSearchedUsers(): LiveData<List<SearchUserEntity>> = _searchUsers
 
 }
