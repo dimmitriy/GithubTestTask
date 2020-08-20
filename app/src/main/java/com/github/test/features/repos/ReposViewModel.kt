@@ -5,10 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import com.github.test.base.BaseActivityViewModel
 import com.github.test.entity.response.UserRepoEntity
 import com.github.test.repository.SearchRepository
+import com.github.test.repository.UserRepository
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class ReposViewModel @Inject constructor(private val repository: SearchRepository): BaseActivityViewModel() {
+class ReposViewModel @Inject constructor(private val repository: SearchRepository,
+                                         private val userRepo: UserRepository
+): BaseActivityViewModel() {
 
     private val _userRepos = MutableLiveData<List<UserRepoEntity>>()
     private val disposable = CompositeDisposable()
