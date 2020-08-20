@@ -11,9 +11,14 @@ class MainActivity : BaseActivity<MainViewModel>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel.searchUsers("tom").observe(::displayUsers)
+        viewModel.showProgress.observe(::showProgress)
     }
 
     private fun displayUsers(users: List<SearchUserEntity>) {
+
+    }
+
+    private fun showProgress(isShowProgress: Boolean) {
 
     }
 

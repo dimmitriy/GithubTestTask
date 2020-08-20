@@ -17,11 +17,14 @@ class MainViewModel @Inject constructor(private val searchRepo: SearchRepository
     private val disposable = CompositeDisposable()
 
     fun searchUsers(query: String): LiveData<List<SearchUserEntity>> {
+        showProgress.value = true
         searchRepo.searchUsers(query)
             .subscribe({
                 _searchUsers.value = it.items
+                showProgress.value = false
             }, {
                 it.printStackTrace()
+                showProgress.value = false
             })
             .let(disposable::add)
         return _searchUsers
