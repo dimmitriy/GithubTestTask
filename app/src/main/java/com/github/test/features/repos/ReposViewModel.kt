@@ -8,7 +8,7 @@ import com.github.test.repository.SearchRepository
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class ReposViewModel @Inject constructor(private val repository: SearchRepository): BaseActivityViewModel<ReposView>() {
+class ReposViewModel @Inject constructor(private val repository: SearchRepository): BaseActivityViewModel() {
 
     private val _userRepos = MutableLiveData<List<UserRepoEntity>>()
     private val disposable = CompositeDisposable()

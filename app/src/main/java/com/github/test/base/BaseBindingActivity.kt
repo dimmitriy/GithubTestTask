@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import javax.inject.Inject
 
-abstract class BaseActivity<VM : BaseActivityViewModel<V>, V: MxView> : BaseInjectorActivity() {
+abstract class BaseActivity<VM : BaseActivityViewModel> : BaseInjectorActivity() {
 
     @Inject lateinit var viewModel: VM
 
