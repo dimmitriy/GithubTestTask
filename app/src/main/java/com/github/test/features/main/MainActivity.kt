@@ -1,5 +1,6 @@
 package com.github.test.features.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
@@ -7,18 +8,20 @@ import com.github.test.R
 import com.github.test.base.BaseActivity
 import com.github.test.entity.response.SearchUserEntity
 import com.github.test.extensions.initWithAdapter
+import com.github.test.features.main.adapter.UserClickListener
 import com.github.test.features.main.adapter.UsersAdapter
+import com.github.test.features.repos.ReposActivity
 import com.github.test.view.ExtendedTextWatcher
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<MainViewModel>() {
+class MainActivity : BaseActivity<MainViewModel>(), UserClickListener {
 
     private lateinit var adapter: UsersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        adapter = UsersAdapter()
+        adapter = UsersAdapter(this)
         search_list.initWithAdapter(adapter)
         search_users.addTextChangedListener(object: ExtendedTextWatcher() {
             override fun afterTextChanged(p0: Editable) {
@@ -26,7 +29,12 @@ class MainActivity : BaseActivity<MainViewModel>() {
             }
         })
         viewModel.getSearchedUsers().observe(::displayUsers)
+        viewModel.getNavigation().observe(::navigateTo)
         viewModel.showProgress.observe(::showProgress)
+    }
+
+    private fun navigateTo(any: Any) {
+        startActivity(Intent(this, ReposActivity::class.java))
     }
 
     private fun displayUsers(users: List<SearchUserEntity>) {
@@ -35,6 +43,10 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
     private fun showProgress(isShowProgress: Boolean) {
         search_progress.visibility = if (isShowProgress) View.VISIBLE else View.GONE
+    }
+
+    override fun onUserClicked(user: SearchUserEntity) {
+        viewModel.onUserClicked(user)
     }
 
 }

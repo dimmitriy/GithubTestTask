@@ -14,6 +14,7 @@ class MainViewModel @Inject constructor(private val searchRepo: SearchRepository
 ): BaseActivityViewModel() {
 
     private val _searchUsers = MutableLiveData<List<SearchUserEntity>>()
+    private val navigation = MutableLiveData<Any>()
     private val disposable = CompositeDisposable()
 
     fun searchUsers(query: String) {
@@ -29,6 +30,13 @@ class MainViewModel @Inject constructor(private val searchRepo: SearchRepository
             .let(disposable::add)
     }
 
+    fun onUserClicked(user: SearchUserEntity) {
+        userRepo.selectUser(user)
+        navigation.value = Any()
+    }
+
     fun getSearchedUsers(): LiveData<List<SearchUserEntity>> = _searchUsers
+
+    fun getNavigation(): LiveData<Any> = navigation
 
 }
