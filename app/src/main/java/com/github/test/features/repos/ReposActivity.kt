@@ -21,22 +21,25 @@ class ReposActivity : BaseActivity<ReposViewModel>(), RepoClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repos)
+        initViews()
+        viewModel.getUser().observe(::displayUserInfo)
+        viewModel.showProgress.observe(::showProgress)
+    }
+
+    private fun initViews() {
+        search_repos_close.setOnClickListener { search_repos.setText("") }
         adapter = ReposAdapter(this)
-        search_repos.addTextChangedListener(object: ExtendedTextWatcher() {
+        search_repos.addTextChangedListener(object : ExtendedTextWatcher() {
             override fun afterTextChanged(p0: Editable) {
                 viewModel.filterRepos(p0.toString())
             }
         })
         search_repos_list.initWithAdapter(adapter)
-        viewModel.getUser().observe(::displayUserInfo)
-        viewModel.showProgress.observe(::showProgress)
     }
 
     private fun displayUserInfo(user: SearchUserEntity) {
         Picasso.with(this)
             .load(user.avatarUrl)
-            .centerCrop()
-            .resize(user_details_image.width, user_details_image.height)
             .into(user_details_image)
         user_details_name.text = user.login
         // TODO how to find necessary user data

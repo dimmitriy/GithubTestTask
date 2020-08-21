@@ -21,16 +21,25 @@ class MainActivity : BaseActivity<MainViewModel>(), UserClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        adapter = UsersAdapter(this)
-        search_list.initWithAdapter(adapter)
-        search_users.addTextChangedListener(object: ExtendedTextWatcher() {
-            override fun afterTextChanged(p0: Editable) {
-                viewModel.searchUsers(p0.toString())
-            }
-        })
+        initViews()
         viewModel.getSearchedUsers().observe(::displayUsers)
         viewModel.getNavigation().observe(::navigateTo)
         viewModel.showProgress.observe(::showProgress)
+    }
+
+    private fun initViews() {
+        search_users_close.setOnClickListener { search_users.setText("") }
+        adapter = UsersAdapter(this)
+        search_list.initWithAdapter(adapter)
+        search_users.addTextChangedListener(object : ExtendedTextWatcher() {
+            override fun afterTextChanged(p0: Editable) {
+                if (p0.toString().isNotEmpty()) {
+                    viewModel.searchUsers(p0.toString())
+                } else {
+                    viewModel.onCloseClicked()
+                }
+            }
+        })
     }
 
     private fun navigateTo(any: Any) {

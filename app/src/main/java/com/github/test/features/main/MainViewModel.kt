@@ -35,6 +35,10 @@ class MainViewModel @Inject constructor(private val searchRepo: SearchRepository
         navigation.value = Any()
     }
 
+    fun onCloseClicked() {
+        _searchUsers.value = listOf()
+    }
+
     fun getSearchedUsers(): LiveData<List<SearchUserEntity>> = _searchUsers
 
     fun getNavigation(): LiveData<Any> = navigation
