@@ -9,8 +9,8 @@ import com.github.test.repository.UserRepository
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val searchRepo: SearchRepository,
-                                        private val userRepo: UserRepository
+class UsersViewModel @Inject constructor(private val searchRepo: SearchRepository,
+                                         private val userRepo: UserRepository
 ): BaseActivityViewModel() {
 
     private val _searchUsers = MutableLiveData<List<SearchUserEntity>>()

@@ -1,6 +1,6 @@
 package com.github.test.di
 
-import com.github.test.features.main.MainActivity
+import com.github.test.features.main.UsersActivity
 import com.github.test.di.scope.ActivityScope
 import com.github.test.features.repos.ReposActivity
 import dagger.Module
@@ -11,7 +11,7 @@ internal abstract class ActivityModule {
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [])
-    abstract fun mainActivityInjector(): MainActivity
+    abstract fun mainActivityInjector(): UsersActivity
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [])

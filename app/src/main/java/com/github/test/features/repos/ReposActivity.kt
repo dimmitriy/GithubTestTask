@@ -2,6 +2,7 @@ package com.github.test.features.repos
 
 import android.os.Bundle
 import android.text.Editable
+import android.view.MenuItem
 import android.view.View
 import com.github.test.R
 import com.github.test.base.BaseActivity
@@ -21,9 +22,18 @@ class ReposActivity : BaseActivity<ReposViewModel>(), RepoClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repos)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         initViews()
         viewModel.getUser().observe(::displayUserInfo)
         viewModel.showProgress.observe(::showProgress)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initViews() {
@@ -41,7 +51,7 @@ class ReposActivity : BaseActivity<ReposViewModel>(), RepoClickListener {
         Picasso.with(this)
             .load(user.avatarUrl)
             .into(user_details_image)
-        user_details_name.text = user.login
+        user_details_name.text = String.format("%s %s", getString(R.string.user_details_name_title), user.login)
         // TODO how to find necessary user data
         viewModel.obtainUserRepos(user.login).observe(::displayUserRepos)
     }

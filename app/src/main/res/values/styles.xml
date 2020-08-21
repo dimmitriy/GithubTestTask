@@ -13,4 +13,9 @@
         <item name="colorControlHighlight">@color/light_gray</item>
     </style>
 
+    <style name="UserDetailsTheme">
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
 </resources>

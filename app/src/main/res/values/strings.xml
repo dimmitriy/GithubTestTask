@@ -2,4 +2,12 @@
     <string name="app_name">GithubTest</string>
     <string name="user_repos_search_hint">Search for User\'s Repositories</string>
     <string name="user_search_hint">Search for Users</string>
+
+    <string name="user_details_name_title">UserName:</string>
+    <string name="user_details_email_title">Email:</string>
+    <string name="user_details_join_date_title">Join Date:</string>
+    <string name="user_details_location_title">Location:</string>
+    <string name="user_details_followers_title">Followers:</string>
+    <string name="user_details_following_title">Following:</string>
+    <string name="user_details_description">Description:</string>
 </resources>

@@ -11,17 +11,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="16dp">
 
-        <ImageView
+        <com.github.test.view.RoundedImageView
             android:id="@+id/user_image"
-            android:layout_width="72dp"
-            android:layout_height="108dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="@dimen/user_image_size"
+            android:layout_height="@dimen/user_image_size"
+            android:layout_marginStart="8dp"
             android:layout_centerVertical="true"
-            tools:src="@drawable/ic_avatar"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_avatar"
             tools:ignore="ContentDescription" />
 
         <TextView

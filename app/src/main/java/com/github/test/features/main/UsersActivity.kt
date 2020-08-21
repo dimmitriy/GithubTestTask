@@ -12,15 +12,15 @@ import com.github.test.features.main.adapter.UserClickListener
 import com.github.test.features.main.adapter.UsersAdapter
 import com.github.test.features.repos.ReposActivity
 import com.github.test.view.ExtendedTextWatcher
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_users.*
 
-class MainActivity : BaseActivity<MainViewModel>(), UserClickListener {
+class UsersActivity : BaseActivity<UsersViewModel>(), UserClickListener {
 
     private lateinit var adapter: UsersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_users)
         initViews()
         viewModel.getSearchedUsers().observe(::displayUsers)
         viewModel.getNavigation().observe(::navigateTo)
