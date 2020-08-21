@@ -11,28 +11,39 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class ReposViewModel @Inject constructor(private val repository: SearchRepository,
-                                         private val userRepo: UserRepository
+                                         userRepo: UserRepository
 ): BaseActivityViewModel() {
 
-    private val _userRepos = MutableLiveData<List<UserRepoEntity>>()
-    private val _user = MutableLiveData<SearchUserEntity>()
+    private var userReposList: List<UserRepoEntity> = listOf()
+    private val userReposData = MutableLiveData<List<UserRepoEntity>>()
+    private val userData = MutableLiveData<SearchUserEntity>()
     private val disposable = CompositeDisposable()
 
     init {
-        _user.value = userRepo.getUser()
+        userData.value = userRepo.getUser()
     }
 
-    fun getUser() = _user
+    fun getUser() = userData
 
-    fun getUserRepos(username: String): LiveData<List<UserRepoEntity>> {
+    fun obtainUserRepos(username: String): LiveData<List<UserRepoEntity>> {
+        showProgress.value = true
         repository.getUserRepos(username)
             .subscribe({
-                _userRepos.value = it
+                userReposList = it
+                userReposData.value = it
+                showProgress.value = false
             }, {
                 it.printStackTrace()
+                showProgress.value = false
             })
             .let(disposable::add)
-        return _userRepos
+        return userReposData
+    }
+
+    fun filterRepos(query: String) {
+        userReposList.filter { it.name.contains(query) }.let {
+            userReposData.value = it
+        }
     }
 
 }

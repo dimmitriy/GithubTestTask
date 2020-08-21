@@ -8,8 +8,8 @@ public class UserRepoEntity {
     public Integer id;
 
     @SerializedName("node_id")
-
     public String nodeId;
+
     @SerializedName("name")
     public String name;
 

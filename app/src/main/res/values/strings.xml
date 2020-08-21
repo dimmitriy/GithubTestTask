@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GithubTest</string>
+    <string name="user_repos_search_hint">Search for User\'s Repositories</string>
 </resources>
