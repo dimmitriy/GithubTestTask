@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".features.repos.ReposActivity">
+    tools:context=".features.repos.UserDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +19,7 @@
             android:layout_height="200dp"
             android:src="@drawable/ic_avatar"
             android:scaleType="centerCrop"
+            android:background="@android:color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -84,7 +85,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/user_details_description"
+        android:id="@+id/user_details_biography"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/user_details_margin"

@@ -10,7 +10,7 @@ import com.github.test.entity.response.SearchUserEntity
 import com.github.test.extensions.initWithAdapter
 import com.github.test.features.main.adapter.UserClickListener
 import com.github.test.features.main.adapter.UsersAdapter
-import com.github.test.features.repos.ReposActivity
+import com.github.test.features.repos.UserDetailsActivity
 import com.github.test.view.ExtendedTextWatcher
 import kotlinx.android.synthetic.main.activity_users.*
 
@@ -43,7 +43,7 @@ class UsersActivity : BaseActivity<UsersViewModel>(), UserClickListener {
     }
 
     private fun navigateTo(any: Any) {
-        startActivity(Intent(this, ReposActivity::class.java))
+        startActivity(Intent(this, UserDetailsActivity::class.java))
     }
 
     private fun displayUsers(users: List<SearchUserEntity>) {

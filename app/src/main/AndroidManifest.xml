@@ -23,7 +23,7 @@
 
         </activity>
 
-        <activity android:name=".features.repos.ReposActivity"/>
+        <activity android:name=".features.repos.UserDetailsActivity"/>
 
     </application>
 

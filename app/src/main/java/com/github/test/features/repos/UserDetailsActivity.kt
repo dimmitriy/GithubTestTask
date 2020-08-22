@@ -6,26 +6,28 @@ import android.view.MenuItem
 import android.view.View
 import com.github.test.R
 import com.github.test.base.BaseActivity
-import com.github.test.entity.response.SearchUserEntity
+import com.github.test.entity.response.UserDetailsResponse
 import com.github.test.entity.response.UserRepoEntity
 import com.github.test.extensions.initWithAdapter
 import com.github.test.features.repos.adapter.RepoClickListener
 import com.github.test.features.repos.adapter.ReposAdapter
 import com.github.test.view.ExtendedTextWatcher
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_repos.*
+import kotlinx.android.synthetic.main.activity_user_details.*
+import org.joda.time.format.DateTimeFormat
 
-class ReposActivity : BaseActivity<ReposViewModel>(), RepoClickListener {
+class UserDetailsActivity : BaseActivity<UserDetailsViewModel>(), RepoClickListener {
 
     private lateinit var adapter: ReposAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_repos)
+        setContentView(R.layout.activity_user_details)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         initViews()
-        viewModel.getUser().observe(::displayUserInfo)
+        viewModel.getUserDetails().observe(::displayUserInfo)
+        viewModel.getUserRepos().observe(::displayUserRepos)
         viewModel.showProgress.observe(::showProgress)
     }
 
@@ -47,13 +49,20 @@ class ReposActivity : BaseActivity<ReposViewModel>(), RepoClickListener {
         search_repos_list.initWithAdapter(adapter)
     }
 
-    private fun displayUserInfo(user: SearchUserEntity) {
+    private fun displayUserInfo(user: UserDetailsResponse) {
         Picasso.with(this)
             .load(user.avatarUrl)
             .into(user_details_image)
-        user_details_name.text = String.format("%s %s", getString(R.string.user_details_name_title), user.login)
-        // TODO how to find necessary user data
-        viewModel.obtainUserRepos(user.login).observe(::displayUserRepos)
+        val noData = getString(R.string.no_data)
+        user_details_name.text = String.format("%s %s", getString(R.string.user_details_name_title), user.name ?: noData)
+        user_details_email.text = String.format("%s %s", getString(R.string.user_details_email_title), user.email ?: noData)
+        user_details_location.text = String.format("%s %s", getString(R.string.user_details_location_title), user.location ?: noData)
+        user_details_followers.text = String.format("%s %s", getString(R.string.user_details_followers_title), user.followers ?: noData)
+        user_details_following.text = String.format("%s %s", getString(R.string.user_details_following_title), user.following ?: noData)
+        user_details_biography.text = String.format("%s %s", getString(R.string.user_details_description), user.bio ?: noData)
+
+        val date = user.joinDate?.let { DateTimeFormat.forPattern("dd.MM.yyyy").print(it) } ?: let { noData }
+        user_details_join_date.text = String.format("%s %s", getString(R.string.user_details_join_date_title), date)
     }
 
     private fun displayUserRepos(repos: List<UserRepoEntity>) {
