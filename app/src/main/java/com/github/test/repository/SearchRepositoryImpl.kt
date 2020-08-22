@@ -14,8 +14,4 @@ class SearchRepositoryImpl @Inject constructor(private val apiService: GitHubApi
         apiService.searchUsers(query)
             .compose(rxSingleSchedulers.applySchedulers())
 
-    override fun getUserRepos(username: String): Single<List<UserRepoEntity>> =
-        apiService.getUserRepos(username)
-            .compose(rxSingleSchedulers.applySchedulers())
-
 }

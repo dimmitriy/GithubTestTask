@@ -1,6 +1,7 @@
 package com.github.test.api
 
 import com.github.test.entity.response.SearchUsersResponse
+import com.github.test.entity.response.UserDetailsResponse
 import com.github.test.entity.response.UserRepoEntity
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -14,5 +15,8 @@ interface GitHubApiService {
 
     @GET("users/{username}/repos")
     fun getUserRepos(@Path("username") username: String): Single<List<UserRepoEntity>>
+
+    @GET("users/{username}")
+    fun getUserDetails(@Path("username") username: String): Single<UserDetailsResponse>
 
 }
