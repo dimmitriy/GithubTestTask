@@ -1,4 +1,4 @@
-package com.github.test.features.repos.adapter
+package com.github.test.features.userdetails.adapter
 
 import com.github.test.entity.response.UserRepoEntity
 

@@ -1,4 +1,4 @@
-package com.github.test.features.repos
+package com.github.test.features.userdetails
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,8 +9,8 @@ import com.github.test.base.BaseActivity
 import com.github.test.entity.response.UserDetailsResponse
 import com.github.test.entity.response.UserRepoEntity
 import com.github.test.extensions.initWithAdapter
-import com.github.test.features.repos.adapter.RepoClickListener
-import com.github.test.features.repos.adapter.ReposAdapter
+import com.github.test.features.userdetails.adapter.RepoClickListener
+import com.github.test.features.userdetails.adapter.ReposAdapter
 import com.github.test.view.ExtendedTextWatcher
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_details.*

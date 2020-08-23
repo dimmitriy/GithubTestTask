@@ -1,15 +1,12 @@
-package com.github.test.features.repos.adapter
+package com.github.test.features.userdetails.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.test.R
-import com.github.test.entity.response.SearchUserEntity
 import com.github.test.entity.response.UserRepoEntity
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.repo_item.view.*
-import kotlinx.android.synthetic.main.user_item.view.*
 import java.util.*
 
 class ReposAdapter(val clickListener: RepoClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         android:name="com.github.test.App">
 
-        <activity android:name="com.github.test.features.main.UsersActivity">
+        <activity android:name="com.github.test.features.users.UsersActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
 
         </activity>
 
-        <activity android:name=".features.repos.UserDetailsActivity"/>
+        <activity android:name=".features.userdetails.UserDetailsActivity"/>
 
     </application>
 

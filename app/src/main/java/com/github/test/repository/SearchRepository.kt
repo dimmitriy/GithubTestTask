@@ -5,6 +5,6 @@ import io.reactivex.Single
 
 interface SearchRepository {
 
-    fun searchUsers(query: String): Single<SearchUsersResponse>
+    fun searchUsers(query: String, page: Int, perPage: Int): Single<SearchUsersResponse>
 
 }

@@ -1,4 +1,4 @@
-package com.github.test.features.main.adapter
+package com.github.test.features.users.adapter
 
 import com.github.test.entity.response.SearchUserEntity
 

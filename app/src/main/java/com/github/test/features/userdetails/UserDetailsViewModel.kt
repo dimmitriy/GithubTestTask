@@ -1,12 +1,10 @@
-package com.github.test.features.repos
+package com.github.test.features.userdetails
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.github.test.base.BaseActivityViewModel
-import com.github.test.entity.response.SearchUserEntity
 import com.github.test.entity.response.UserDetailsResponse
 import com.github.test.entity.response.UserRepoEntity
-import com.github.test.repository.SearchRepository
 import com.github.test.repository.UserRepository
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
