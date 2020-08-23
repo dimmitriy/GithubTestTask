@@ -6,25 +6,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.test.R
 import com.github.test.base.BaseViewHolder
-import com.github.test.entity.response.SearchUserEntity
+import com.github.test.entity.response.UserDetailsResponse
 import com.github.test.features.users.viewholder.ProgressViewHolder
 import com.github.test.features.users.viewholder.UserViewHolder
 import java.util.*
 
-class UsersAdapter private constructor(private val mItems: MutableList<SearchUserEntity>) :
-    RecyclerView.Adapter<BaseViewHolder<SearchUserEntity>>() {
+class UsersAdapter private constructor(private val mItems: MutableList<UserDetailsResponse>) :
+    RecyclerView.Adapter<BaseViewHolder<UserDetailsResponse>>() {
 
     private var mShowProgress = false
     private var onClickListener: UserClickListener? = null
 
-    constructor() : this(ArrayList<SearchUserEntity>())
+    constructor() : this(ArrayList<UserDetailsResponse>())
 
     fun cleanItems() {
         mItems.clear()
         notifyDataSetChanged()
     }
 
-    fun addItems(items: List<SearchUserEntity>?) {
+    fun addItems(items: List<UserDetailsResponse>?) {
         if (mShowProgress) {
             hideProgress()
         }
@@ -32,7 +32,7 @@ class UsersAdapter private constructor(private val mItems: MutableList<SearchUse
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<SearchUserEntity>
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<UserDetailsResponse>
          = if (viewType == ITEM_TYPE_USER) {
             val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.user_item, parent, false)
@@ -44,7 +44,7 @@ class UsersAdapter private constructor(private val mItems: MutableList<SearchUse
         }
 
     @SuppressLint("CheckResult")
-    override fun onBindViewHolder(holder: BaseViewHolder<SearchUserEntity>, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<UserDetailsResponse>, position: Int) {
         if (holder is UserViewHolder) {
             holder.setOnClickListener(onClickListener!!)
         }

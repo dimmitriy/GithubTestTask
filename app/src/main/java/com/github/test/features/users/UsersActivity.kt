@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.test.R
 import com.github.test.base.BaseActivity
 import com.github.test.entity.response.SearchUserEntity
+import com.github.test.entity.response.UserDetailsResponse
 import com.github.test.extensions.initWithAdapter
 import com.github.test.features.users.adapter.UserClickListener
 import com.github.test.features.users.adapter.UsersAdapter
@@ -15,6 +16,7 @@ import com.github.test.view.RecyclerScrollListener
 import com.jakewharton.rxbinding.widget.RxTextView
 import kotlinx.android.synthetic.main.activity_users.*
 import rx.android.schedulers.AndroidSchedulers
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 class UsersActivity : BaseActivity<UsersViewModel>(), UserClickListener {
@@ -49,10 +51,11 @@ class UsersActivity : BaseActivity<UsersViewModel>(), UserClickListener {
         search_list.addOnScrollListener(scrollListener)
 
         RxTextView.textChanges(search_users)
-            .debounce(600, TimeUnit.MILLISECONDS)
+            .debounce(1000, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe{ query ->
                 searchQuery = query.toString()
+                adapter.cleanItems()
                 if (query.isNotEmpty()) {
                     viewModel.searchUsers(query.toString())
                 } else {
@@ -65,7 +68,8 @@ class UsersActivity : BaseActivity<UsersViewModel>(), UserClickListener {
         startActivity(Intent(this, UserDetailsActivity::class.java))
     }
 
-    private fun displayUsers(users: List<SearchUserEntity>) {
+    private fun displayUsers(users: List<UserDetailsResponse>) {
+        Timber.d("displayUsers size: ${users.size}")
         scrollListener.setLoading(false)
         if (users.isEmpty()) {
             adapter.cleanItems()
@@ -78,7 +82,7 @@ class UsersActivity : BaseActivity<UsersViewModel>(), UserClickListener {
         search_progress.visibility = if (isShowProgress) View.VISIBLE else View.GONE
     }
 
-    override fun onUserClicked(user: SearchUserEntity) {
+    override fun onUserClicked(user: UserDetailsResponse) {
         viewModel.onUserClicked(user)
     }
 
