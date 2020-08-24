@@ -24,24 +24,24 @@ class UsersAdapter private constructor(private val mItems: MutableList<UserDetai
         notifyDataSetChanged()
     }
 
-    fun addItems(items: List<UserDetailsResponse>?) {
+    fun addItems(items: List<UserDetailsResponse>) {
         if (mShowProgress) {
             hideProgress()
         }
-        mItems.addAll(items!!)
+        mItems.addAll(items)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<UserDetailsResponse>
-         = if (viewType == ITEM_TYPE_USER) {
-            val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.user_item, parent, false)
+            = if (viewType == ITEM_TYPE_USER) {
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.user_item, parent, false)
         UserViewHolder(itemView)
-        } else {
-            val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.progress_item, parent, false)
+    } else {
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.progress_item, parent, false)
         ProgressViewHolder(itemView)
-        }
+    }
 
     @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: BaseViewHolder<UserDetailsResponse>, position: Int) {

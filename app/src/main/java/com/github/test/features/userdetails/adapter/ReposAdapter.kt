@@ -38,10 +38,11 @@ class ReposAdapter(val clickListener: RepoClickListener): RecyclerView.Adapter<R
             itemView.setOnClickListener {
                 clickListener.onRepoClicked(repoEntity)
             }
+            val forks = itemView.context.getString(R.string.repo_forks)
+            val stargazers = itemView.context.getString(R.string.repo_stargazers)
             itemView.repo_name.text = repoEntity.name
-            // TODO check what field is responsible for stars count
-            itemView.repo_stars.text = repoEntity.stargazersCount.toString()
-            itemView.repo_forks.text = repoEntity.forksCount.toString()
+            itemView.repo_stars.text = String.format(stargazers, repoEntity.stargazersCount)
+            itemView.repo_forks.text = String.format(forks, repoEntity.forksCount)
         }
     }
 

@@ -1,11 +1,14 @@
 <resources>
 
     <string name="app_name">GithubTest</string>
-    <string name="user_repos_search_hint">Search for User\'s Repositories</string>
-    <string name="user_search_hint">Search for Users</string>
+    <string name="user_repos_search_hint">Search for GitHub user\'s repositories</string>
+    <string name="user_search_hint">Search for GitHub users</string>
 
     <string name="search_user_name">UserName: %s</string>
     <string name="search_user_repos">Public Repos: %d</string>
+
+    <string name="repo_forks">Forks: %d</string>
+    <string name="repo_stargazers">Stargazers: %d</string>
 
     <string name="user_details_name_title">UserName:</string>
     <string name="user_details_email_title">Email:</string>

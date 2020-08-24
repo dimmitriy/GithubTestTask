@@ -1,5 +1,7 @@
 package com.github.test.features.userdetails
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.view.MenuItem
@@ -74,7 +76,9 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel>(), RepoClickListe
     }
 
     override fun onRepoClicked(repo: UserRepoEntity) {
-
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(repo.htmlUrl)
+        startActivity(intent)
     }
 
 }
