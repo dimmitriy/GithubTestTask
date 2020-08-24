@@ -25,8 +25,6 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel>(), RepoClickListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
         initViews()
         viewModel.getUserDetails().observe(::displayUserInfo)
         viewModel.getUserRepos().observe(::displayUserRepos)
@@ -41,6 +39,8 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel>(), RepoClickListe
     }
 
     private fun initViews() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         search_repos_close.setOnClickListener { search_repos.setText("") }
         adapter = ReposAdapter(this)
         search_repos.addTextChangedListener(object : ExtendedTextWatcher() {
@@ -52,7 +52,7 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel>(), RepoClickListe
     }
 
     private fun displayUserInfo(user: UserDetailsResponse) {
-        Picasso.with(this)
+        Picasso.get()
             .load(user.avatarUrl)
             .into(user_details_image)
         val noData = getString(R.string.no_data)
@@ -69,6 +69,7 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel>(), RepoClickListe
 
     private fun displayUserRepos(repos: List<UserRepoEntity>) {
         adapter.setItems(repos)
+        search_user_repos_no_results.visibility = if (repos.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun showProgress(isShowProgress: Boolean) {

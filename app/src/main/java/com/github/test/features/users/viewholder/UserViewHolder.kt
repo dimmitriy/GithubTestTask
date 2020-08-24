@@ -24,7 +24,7 @@ class UserViewHolder internal constructor(private val view: View): BaseViewHolde
         val repos = itemView.context.getString(R.string.search_user_repos)
         itemView.user_name.text = String.format(name, userEntity.login)
         itemView.user_repos.text = String.format(repos, userEntity.publicRepos)
-        Picasso.with(view.context)
+        Picasso.get()
             .load(userEntity.avatarUrl)
             .into(itemView.user_image)
     }

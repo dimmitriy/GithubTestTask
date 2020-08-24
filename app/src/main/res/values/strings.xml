@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">GithubTest</string>
-    <string name="user_repos_search_hint">Search for GitHub user\'s repositories</string>
+    <string name="user_repos_search_hint">Search for user\'s repos</string>
     <string name="user_search_hint">Search for GitHub users</string>
 
     <string name="search_user_name">UserName: %s</string>
@@ -17,6 +17,8 @@
     <string name="user_details_followers_title">Followers:</string>
     <string name="user_details_following_title">Following:</string>
     <string name="user_details_description">Description:</string>
+    <string name="user_repos_no_search_results">No search results for repos</string>
+    <string name="users_no_search_results">No search results for users</string>
     <string name="no_data">no data</string>
 
 </resources>

@@ -76,6 +76,7 @@ class UsersActivity : BaseActivity<UsersViewModel>(), UserClickListener {
         } else {
             adapter.addItems(users)
         }
+        search_users_no_results.visibility = if (users.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun showProgress(isShowProgress: Boolean) {

@@ -14,9 +14,9 @@ class ReposAdapter(val clickListener: RepoClickListener): RecyclerView.Adapter<R
     private val mItems = ArrayList<UserRepoEntity>()
 
     @Synchronized
-    fun setItems(users: List<UserRepoEntity>) {
+    fun setItems(repos: List<UserRepoEntity>) {
         mItems.clear()
-        mItems.addAll(users)
+        mItems.addAll(repos)
         notifyDataSetChanged()
     }
 
